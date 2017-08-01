@@ -1,0 +1,21 @@
+{{#each posts as |post|}}
+  <article class="blog-post">
+    <h3>
+      <span class="blog-post-title">
+        {{post.title}}
+      </span>
+    </h3>
+    <div>
+      <span>Description:</span> <span class="blog-post-description">{{post.description}}</span>
+    </div>
+    {{#if post.author}}
+      <div>
+        <span>Author:</span> {{post.author}}
+      </div>
+    {{else}}
+      nothing
+    {{/if}}
+  </article>
+{{else}}
+  No Blog Posts Found!
+{{/each}}

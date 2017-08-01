@@ -1,26 +1,39 @@
+import faker from 'ember-cli-mirage';
+import Response from 'ember-cli-mirage/response';
+import formEncodedToJson from '../mirage/helpers/form-encoded-to-json'
+
 export default function() {
+  faker.locale = 'ru';
 
-  // These comments are here to help you get started. Feel free to delete them.
+  this.namespace = '/api';
 
-  /*
-    Config (with defaults).
+  this.get('/posts', (schema) => {
+    return schema.posts.all();
+  });
 
-    Note: these only affect routes defined *after* them!
-  */
+  this.post('/login', function({ users }, request){
+    let params = formEncodedToJson(request.requestBody);
 
-  // this.urlPrefix = '';    // make this `http://localhost:8080`, for example, if your API is on a different server
-  // this.namespace = '';    // make this `/api`, for example, if your API is namespaced
-  // this.timing = 400;      // delay for each request, automatically set to 0 during testing
+    let user = users.new({ login: 'user', password: '321321' });
 
-  /*
-    Shorthand cheatsheet:
+    if(params.username === user.login && params.password === user.password) {
+      return {
+        "access_token":"PA$$WORD",
+        "token_type":"bearer"
+      };
+    }
+    else {
+      let body = { errors: 'Email or password is invalid' };
+      return new Response(401, {}, body);
+    }
+  });
 
-    this.get('/posts');
-    this.post('/posts');
-    this.get('/posts/:id');
-    this.put('/posts/:id'); // or this.patch
-    this.del('/posts/:id');
-
-    http://www.ember-cli-mirage.com/docs/v0.3.x/shorthands/
-  */
+  // this.get('/posts', ({ post }, request) => {
+  //   const token = Ember.get(request, 'requestHeaders.Authorization');
+  //   if (token === 'Bearer hotdog') {
+  //     return post.all();
+  //   } else {
+  //     return new Mirage.Response(401, {}, {});
+  //   }
+  // });
 }
