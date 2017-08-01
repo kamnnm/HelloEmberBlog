@@ -8,9 +8,9 @@
     <div>
       <span>Description:</span> <span class="blog-post-description">{{post.description}}</span>
     </div>
-    {{#if post.author}}
+    {{#if post.user}}
       <div>
-        <span>Author:</span> {{post.author}}
+        <span>Author:</span> {{post.user.fullName}}
       </div>
     {{else}}
       nothing

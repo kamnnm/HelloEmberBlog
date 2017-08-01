@@ -1,14 +1,21 @@
 {{#if session.isAuthenticated}}
-  <a {{action 'invalidateSession'}}>Logout</a>
+  <a {{action 'invalidateSession'}} class="user-logout">Logout</a>
 {{else}}
-  <form {{action 'authenticate' on='submit'}}>
+  <form {{action 'authenticate' on='submit'}} class="user-login-form">
     <label for="identification">Login</label>
-    {{input id='identification' placeholder='Enter Login' value=identification}}
+    {{input id='identification'
+            placeholder='Enter Login'
+            value=identification
+            class='user-login-form__login-input'}}
     <label for="password">Password</label>
-    {{input id='password' placeholder='Enter Password' type='password' value=password}}
-    <button type="submit">Login</button>
+    {{input id='password'
+            placeholder='Enter Password'
+            type='password'
+            value=password
+            class='user-login-form__password-input'}}
+    <button type="submit" class="user-login-form__submit">Login</button>
     {{#if errorMessage}}
-      <p>{{errorMessage.errors}}</p>
+      <p class="user-login-form__error">{{errorMessage.errors}}</p>
     {{/if}}
   </form>
 {{/if}}

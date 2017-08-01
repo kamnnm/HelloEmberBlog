@@ -7,9 +7,7 @@ export default function() {
 
   this.namespace = '/api';
 
-  this.get('/posts', (schema) => {
-    return schema.posts.all();
-  });
+  this.get('/posts');
 
   this.post('/login', function({ users }, request){
     let params = formEncodedToJson(request.requestBody);
@@ -27,13 +25,4 @@ export default function() {
       return new Response(401, {}, body);
     }
   });
-
-  // this.get('/posts', ({ post }, request) => {
-  //   const token = Ember.get(request, 'requestHeaders.Authorization');
-  //   if (token === 'Bearer hotdog') {
-  //     return post.all();
-  //   } else {
-  //     return new Mirage.Response(401, {}, {});
-  //   }
-  // });
 }

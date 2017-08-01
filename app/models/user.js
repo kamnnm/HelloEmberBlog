@@ -1,9 +1,14 @@
 import DS from 'ember-data';
+import Ember from 'ember';
 
 export default DS.Model.extend({
   firstName: DS.attr(),
   lastName: DS.attr(),
   login: DS.attr(),
   email: DS.attr(),
-  password: DS.attr()
+  password: DS.attr(),
+  posts: DS.hasMany('post'),
+  fullName: Ember.computed("surname", "name", function fullName(){
+     return `${this.get('firstName')} ${this.get('lastName')}`;
+   }),
 });

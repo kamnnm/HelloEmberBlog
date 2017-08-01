@@ -1,6 +1,8 @@
 import { moduleForModel, test } from 'ember-qunit';
 
-moduleForModel('post', 'Unit | Model | post');
+moduleForModel('post', 'Unit | Model | post', {
+  needs: ['model:user']
+});
 
 test('it exists', function(assert) {
   let model = this.subject();
@@ -10,8 +12,8 @@ test('it exists', function(assert) {
   const correctAttributes = [
     'title',
     'description',
-    'author',
-    'createdAt'
+    'createdAt',
+    'user'
   ];
 
   assert.equal(
