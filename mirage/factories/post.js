@@ -1,14 +1,14 @@
 import { Factory, faker, association } from 'ember-cli-mirage';
 
 export default Factory.extend({
-  title(i) {
-    return `Title ${i}`;
+  title() {
+    return faker.lorem.sentence();
   },
   description() {
     return faker.lorem.paragraphs(5);
   },
   createdAt() {
-    faker.date.past();
+    return faker.date.past();
   },
   user: association(),
 });

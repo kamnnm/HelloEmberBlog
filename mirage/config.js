@@ -1,6 +1,6 @@
 import faker from 'ember-cli-mirage';
 import Response from 'ember-cli-mirage/response';
-import formEncodedToJson from '../mirage/helpers/form-encoded-to-json'
+import Ember from 'ember';
 
 export default function() {
   faker.locale = 'ru';
@@ -9,20 +9,36 @@ export default function() {
 
   this.get('/posts');
 
-  this.post('/login', function({ users }, request){
-    let params = formEncodedToJson(request.requestBody);
+  this.post('/posts', ({ posts }) => {
+    let attrs = this.normalizedRequestAttrs();
 
-    let user = users.new({ login: 'user', password: '321321' });
+    Ember.set(attrs, 'createdAt', new Date());
 
-    if(params.username === user.login && params.password === user.password) {
-      return {
-        "access_token":"PA$$WORD",
-        "token_type":"bearer"
-      };
+    return posts.create(attrs);
+  });
+
+  this.post('/token', ({ users }, request) =>  {
+    const params = JSON.parse(request.requestBody);
+
+    const login = params.auth.login;
+    const password = params.auth.password;
+
+    const user = users.findBy({ login, password });
+
+    if(user) {
+      const userJson = JSON.stringify({
+        id: user.id,
+        email: user.email,
+        login: user.login
+      });
+
+      return new Response(201, {}, {
+        token: btoa(userJson),
+        token_type: 'jwt'
+      });
     }
-    else {
-      let body = { errors: 'Email or password is invalid' };
-      return new Response(401, {}, body);
-    }
+
+    let body = { errors: 'Email or password is invalid' };
+    return new Response(401, {}, body);
   });
 }

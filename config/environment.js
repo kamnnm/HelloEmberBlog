@@ -21,6 +21,10 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+    },
+
+    moment: {
+      includeLocales: ['ru']
     }
   };
 
@@ -30,6 +34,10 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV.host = 'http://localhost:4200';
+
+    ENV.registered_login = 'user';
+    ENV.registered_password = '321321';
   }
 
   ENV.emblemOptions = {
@@ -45,6 +53,8 @@ module.exports = function(environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
     ENV.APP.rootElement = '#ember-testing';
+
+    ENV.host = 'http://localhost:4200';
   }
 
   if (environment === 'production') {

@@ -1,4 +1,4 @@
-import { Factory, faker } from 'ember-cli-mirage';
+import { Factory, faker, trait } from 'ember-cli-mirage';
 
 export default Factory.extend({
   firstName() {
@@ -10,4 +10,8 @@ export default Factory.extend({
   email() {
     return faker.internet.email();
   },
+  registered: trait({
+    login: 'user',
+    password: '321321'
+  })
 });

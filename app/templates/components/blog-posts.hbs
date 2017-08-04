@@ -1,21 +1,15 @@
-{{#each posts as |post|}}
-  <article class="blog-post">
-    <h3>
-      <span class="blog-post-title">
-        {{post.title}}
-      </span>
-    </h3>
-    <div>
-      <span>Description:</span> <span class="blog-post-description">{{post.description}}</span>
-    </div>
-    {{#if post.user}}
-      <div>
-        <span>Author:</span> {{post.user.fullName}}
-      </div>
+<div class="row">
+  <div class="col-sm-8 blog-main">
+    {{#each posts as |post|}}
+      <article class="blog-post">
+        <h2 class="blog-post-title">{{post.title}}</h2>
+        <p class="blog-post-meta">{{post.createdAt}} by <a href="#">{{post.user.fullName}}</a></p>
+        <div class="blog-post-description">
+          {{post.description}}
+        </div>
+      </article>
     {{else}}
-      nothing
-    {{/if}}
-  </article>
-{{else}}
-  No Blog Posts Found!
-{{/each}}
+      <h2 class="text-center">No Blog Posts Found.</h2>
+    {{/each}}
+  </div>
+</div>

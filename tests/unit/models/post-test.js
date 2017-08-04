@@ -1,7 +1,7 @@
 import { moduleForModel, test } from 'ember-qunit';
 
 moduleForModel('post', 'Unit | Model | post', {
-  needs: ['model:user']
+  needs: ['model:user', 'transform:date-with-time']
 });
 
 test('it exists', function(assert) {

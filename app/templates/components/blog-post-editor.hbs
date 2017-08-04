@@ -1,0 +1,18 @@
+{{#if session.isAuthenticated}}
+  <form {{action 'createPost' on='submit'}} class="blog-post-form">
+    <label for="title">Title</label>
+    {{input id='title'
+            placeholder='Enter title'
+            value=title
+            class='blog-post-form__title-input'}}
+    <label for="description">Description</label>
+    {{textarea id='description'
+            placeholder='Enter your text here...'
+            value=description
+            class='blog-post-form__description-input'}}
+    <button type="submit" class="blog-post-form__submit">Create</button>
+    {{#if errorMessage}}
+      <p class="blog-post-form__error">{{errorMessage.errors}}</p>
+    {{/if}}
+  </form>
+{{/if}}

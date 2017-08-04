@@ -63,8 +63,10 @@ test('user can login', function(assert) {
   invalidateSession(this.application);
   visit('/');
 
-  let userName = 'user';
-  let password = '321321';
+  server.createList('user', 1, 'registered');
+
+  const userName = 'user';
+  const password = '321321';
 
   fillIn('.user-login-form__login-input', userName);
   fillIn('.user-login-form__password-input', password);
@@ -92,8 +94,8 @@ test('If a user puts in the wrong login credentials, they see a login error', fu
   invalidateSession(this.application);
   visit('/');
 
-  let userName = faker.internet.userName();
-  let password = faker.internet.password();
+  const userName = faker.internet.userName();
+  const password = faker.internet.password();
 
   fillIn('.user-login-form__login-input', userName);
   fillIn('.user-login-form__password-input', password);
