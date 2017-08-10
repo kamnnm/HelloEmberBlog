@@ -12,6 +12,8 @@ export default Factory.extend({
   },
   registered: trait({
     login: 'user',
-    password: '321321'
+    password: '321321',
+    firstName: 'Foo',
+    lastName: 'Bar'
   })
 });

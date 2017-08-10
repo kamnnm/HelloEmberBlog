@@ -4,17 +4,31 @@ import Ember from 'ember';
 
 export default function() {
   faker.locale = 'ru';
-
   this.namespace = '/api';
 
   this.get('/posts');
+  this.get('/posts/:id');
 
-  this.post('/posts', ({ posts }) => {
-    let attrs = this.normalizedRequestAttrs();
+  this.get('/users/:id');
+
+  this.post('/posts', (schema, request) => {
+    let attrs = JSON.parse(request.requestBody).data;
+
+    const authorization = request.requestHeaders.Authorization;
+    const token = authorization.split(" ")[1];
+
+    const userJson = JSON.parse(atob(token));
+    const user = schema.users.find(userJson.id);
 
     Ember.set(attrs, 'createdAt', new Date());
+    Ember.set(attrs, 'userId', user.id);
 
-    return posts.create(attrs);
+    if (attrs.attributes.title) {
+      return schema.posts.create(attrs);
+    }
+
+    let body = { errors: 'Title can\'t be blank' };
+    return new Response(400, {}, body);
   });
 
   this.post('/token', ({ users }, request) =>  {

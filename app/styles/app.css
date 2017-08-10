@@ -108,3 +108,27 @@ h6, .h6 {
 .blog-footer p:last-child {
   margin-bottom: 0;
 }
+
+.bs-form {
+  position: relative;
+  margin: 0 0 15px;
+  padding: 45px 15px 15px;
+  background-color: #fff;
+  border-color: #e5e5e5 #eee #eee;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 3px 6px rgba(0,0,0,.05);
+          box-shadow: inset 0 3px 6px rgba(0,0,0,.05);
+}
+.bs-form:after {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #959595;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  content: "New blog post";
+}

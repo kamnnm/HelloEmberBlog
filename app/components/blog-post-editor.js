@@ -1,4 +1,7 @@
 import Ember from 'ember';
+import Changeset from 'ember-changeset';
+import lookupValidator from 'ember-changeset-validations';
+import PostValidations from '../validations/post';
 
 export default Ember.Component.extend({
   classNames: ['blog-post-editor-component'],
@@ -6,18 +9,33 @@ export default Ember.Component.extend({
   store: Ember.inject.service(),
   session: Ember.inject.service(),
 
+  init() {
+    this._super(...arguments);
+    this.setInitialState();
+  },
+
+  setInitialState() {
+    let model = this.get('store').createRecord('post');
+    this.set('post', new Changeset(model, lookupValidator(PostValidations), PostValidations));
+  },
+
+  titleError: Ember.computed(function() {
+    return this.get('post.error.title');
+  }),
+
   actions: {
     createPost() {
-      let { title, description } = this.getProperties('title', 'description');
+      let post = this.get('post');
 
-      const store = this.get('store');
-
-      let post = store.createRecord('post', {
-        title: title,
-        description: description
+      post.validate().then(() => {
+        if(post.get("isValid")) {
+          post.save().then(() => {
+            this.setInitialState();
+          }).catch((reason) => {
+            this.set('errorMessage', reason.error || reason);
+          });
+        }
       });
-
-      post.save();
     }
   }
 });

@@ -1,6 +1,6 @@
 <div class="navbar-form navbar-right">
   {{#if session.isAuthenticated}}
-    {{#bs-button type="primary" onClick=(action 'invalidateSession') class='user-logout'}}Logout{{/bs-button}}
+    {{#bs-button type="danger" onClick=(action 'invalidateSession') class='user-logout'}}Logout{{/bs-button}}
   {{else}}
     <form {{action 'authenticate' on='submit'}} class="user-login-form">
       {{#if errorMessage}}
