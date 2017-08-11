@@ -19,9 +19,7 @@ export default Ember.Component.extend({
     this.set('post', new Changeset(model, lookupValidator(PostValidations), PostValidations));
   },
 
-  titleError: Ember.computed(function() {
-    return this.get('post.error.title');
-  }),
+  titleError: Ember.computed.bool('post.error.title'),
 
   actions: {
     createPost() {

@@ -1,5 +1,6 @@
 import {validatePresence}  from 'ember-changeset-validations/validators';
 
 export default {
-  title: validatePresence(true)
+  title: validatePresence(true),
+  description: validatePresence(true)
 };
