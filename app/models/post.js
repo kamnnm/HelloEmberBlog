@@ -5,5 +5,5 @@ export default DS.Model.extend({
   description: DS.attr('string'),
   createdAt: DS.attr('date'),
   updatedAt: DS.attr('date'),
-  user: DS.belongsTo('user')
+  author: DS.belongsTo('user')
 });

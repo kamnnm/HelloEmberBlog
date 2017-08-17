@@ -14,7 +14,7 @@ test('it exists', function(assert) {
     'description',
     'createdAt',
     'updatedAt',
-    'user'
+    'author'
   ];
 
   assert.equal(

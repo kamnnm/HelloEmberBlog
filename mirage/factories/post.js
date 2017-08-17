@@ -11,5 +11,5 @@ export default Factory.extend({
     return faker.date.past();
   },
   updatedAt: null,
-  user: association(),
+  author: association(),
 });

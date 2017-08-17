@@ -35,7 +35,7 @@ export default function() {
 
     if (attrs.attributes.title) {
       attrs.createdAt = new Date();
-      attrs.userId = user.id;
+      attrs.authorId = user.id;
 
       return schema.posts.create(attrs);
     }

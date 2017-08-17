@@ -48,8 +48,6 @@ test('registered user should can create blog post', function(assert) {
   authenticateSession(this.application);
   visit('/');
 
-  server.createList('user', 1);
-
   const title = faker.lorem.sentence();
   const description = faker.lorem.paragraphs(1);
 

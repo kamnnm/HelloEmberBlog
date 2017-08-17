@@ -9,7 +9,7 @@ export default Ember.Component.extend({
 
   store: Ember.inject.service(),
   session: Ember.inject.service(),
-  currentUser: Ember.inject.service('current-user'),
+  currentUser: Ember.inject.service(),
 
   editing: false,
 

@@ -5,10 +5,12 @@
     <h2 class="blog-post-title">{{post.title}}</h2>
     <p class="blog-post-meta">
       {{moment-format post.createdAt 'Do MMMM, YYYY HH:mm'}}
-      {{#if post.user.fullName}}
-        by <a href="#">{{post.user.fullName}}</a>
+      {{#if post.author.fullName}}
+        by <a href="#">{{post.author.fullName}}</a>
       {{/if}}
-      {{fa-icon "pencil" class="pull-right cpointer" click=(action 'edit')}}
+      {{#if (can "edit post" post)}}
+        {{fa-icon "pencil" class="pull-right cpointer" click=(action 'edit')}}
+      {{/if}}
     </p>
     <div class="blog-post-description">
       {{nl2br post.description}}
