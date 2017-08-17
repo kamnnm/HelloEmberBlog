@@ -3,7 +3,8 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   classNames: ['user-login-component'],
 
-  session: Ember.inject.service('session'),
+  session: Ember.inject.service(),
+  currentUser: Ember.inject.service(),
 
   actions: {
     authenticate() {

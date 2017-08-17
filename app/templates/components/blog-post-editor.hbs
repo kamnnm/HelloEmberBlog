@@ -1,20 +1,20 @@
 {{#if session.isAuthenticated}}
   <div class="bs-form">
     <form {{action 'createPost' on='submit'}} class="blog-post-form">
-      <div class="form-group {{if titleError 'has-error'}}">
-        {{input id='title'
+      {{#validated-input model=post property='title'}}
+        {{input name='title'
                 placeholder='Enter title'
                 value=post.title
                 class='blog-post-form__title-input form-control'}}
-      </div>
+      {{/validated-input}}
 
-      <div class="form-group">
-        {{textarea id='description'
+      {{#validated-input model=post property='description'}}
+        {{textarea name='description'
                    placeholder='Enter your text here...'
                    value=post.description
                    class='blog-post-form__description-input form-control'
                    rows=3}}
-      </div>
+      {{/validated-input}}
 
       {{#if (or post.errors errorMessage)}}
         <ul class="blog-post-form__error text-danger">
@@ -29,7 +29,10 @@
         </ul>
       {{/if}}
 
-      <button type="submit" class="blog-post-form__submit btn btn-default">Create</button>
+      <button type="submit" class="blog-post-form__submit btn btn-default">{{if editing 'Save' 'Create'}}</button>
+      {{#if editing}}
+        <button type="button" class="blog-post-form__cancel btn btn-default" {{action 'cancel'}}>Cancel</button>
+      {{/if}}
     </form>
   </div>
 {{/if}}

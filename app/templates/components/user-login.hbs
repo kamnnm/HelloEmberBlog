@@ -25,3 +25,12 @@
     </form>
   {{/if}}
 </div>
+{{#if session.isAuthenticated}}
+  {{#if currentUser.user}}
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <a href="#">Signed in as {{currentUser.user.fullName}}</a>
+      </li>
+    </ul>
+  {{/if}}
+{{/if}}

@@ -13,6 +13,7 @@ test('it exists', function(assert) {
     'title',
     'description',
     'createdAt',
+    'updatedAt',
     'user'
   ];
 

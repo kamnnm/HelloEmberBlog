@@ -5,10 +5,11 @@ export default Factory.extend({
     return faker.lorem.sentence();
   },
   description() {
-    return faker.lorem.paragraphs(5);
+    return faker.lorem.paragraphs(2);
   },
   createdAt() {
     return faker.date.past();
   },
+  updatedAt: null,
   user: association(),
 });

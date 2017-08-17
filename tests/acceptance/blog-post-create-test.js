@@ -48,22 +48,7 @@ test('registered user should can create blog post', function(assert) {
   authenticateSession(this.application);
   visit('/');
 
-  const title = faker.lorem.sentence();
-  const description = faker.lorem.paragraphs(1);
-
-  fillIn('.blog-post-form__title-input', title);
-  fillIn('.blog-post-form__description-input', description);
-  click('.blog-post-form__submit');
-
-  andThen(() => {
-    assert.equal(find('.blog-post-title').first().text().trim(), title);
-    assert.equal(find('.blog-post-description').first().text().trim(), description);
-  });
-});
-
-test('registered user should can create blog post', function(assert) {
-  authenticateSession(this.application);
-  visit('/');
+  server.createList('user', 1);
 
   const title = faker.lorem.sentence();
   const description = faker.lorem.paragraphs(1);

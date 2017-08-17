@@ -1,9 +1,6 @@
-import faker from 'ember-cli-mirage';
 import Response from 'ember-cli-mirage/response';
-import Ember from 'ember';
 
 export default function() {
-  faker.locale = 'ru';
   this.namespace = '/api';
 
   this.get('/posts');
@@ -11,19 +8,35 @@ export default function() {
 
   this.get('/users/:id');
 
-  this.post('/posts', (schema, request) => {
-    let attrs = JSON.parse(request.requestBody).data;
+  this.get('/user', ({ users }, request) =>  {
+    const authorization = request.requestHeaders.Authorization;
+    const token = authorization.split(" ")[1];
 
+    const userJson = JSON.parse(atob(token));
+    const user = users.find(userJson.id);
+
+    if (user) {
+      return user;
+    }
+
+    let body = { errors: 'You are not authorized' };
+    return new Response(401, {}, body);
+  });
+
+  this.patch('/posts/:id');
+  this.post('/posts', (schema, request) => {
     const authorization = request.requestHeaders.Authorization;
     const token = authorization.split(" ")[1];
 
     const userJson = JSON.parse(atob(token));
     const user = schema.users.find(userJson.id);
 
-    Ember.set(attrs, 'createdAt', new Date());
-    Ember.set(attrs, 'userId', user.id);
+    let attrs = JSON.parse(request.requestBody).data;
 
     if (attrs.attributes.title) {
+      attrs.createdAt = new Date();
+      attrs.userId = user.id;
+
       return schema.posts.create(attrs);
     }
 
@@ -54,5 +67,13 @@ export default function() {
 
     let body = { errors: 'Email or password is invalid' };
     return new Response(401, {}, body);
+  });
+}
+
+export function testConfig() {
+  this.post('/posts');
+
+  this.get('/user', ({ users }) =>  {
+    return users.create();
   });
 }

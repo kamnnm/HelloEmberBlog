@@ -1,16 +1,5 @@
 {{#each posts as |post|}}
-  <article class="blog-post">
-    <h2 class="blog-post-title">{{post.title}}</h2>
-    <p class="blog-post-meta">
-      {{moment-format post.createdAt 'Do MMMM, YYYY HH:mm'}}
-      {{#if post.user.fullName}}
-        by <a href="#">{{post.user.fullName}}</a>
-      {{/if}}
-    </p>
-    <div class="blog-post-description">
-      {{post.description}}
-    </div>
-  </article>
+  {{blog-post post=post}}
 {{else}}
   <h2 class="text-center">No Blog Posts Found.</h2>
 {{/each}}

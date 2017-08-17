@@ -26,6 +26,10 @@ h6, .h6 {
   }
 }
 
+.cpointer {
+  cursor: pointer;
+}
+
 /*
  * Blog name and description
  */
@@ -131,4 +135,7 @@ h6, .h6 {
   text-transform: uppercase;
   letter-spacing: 1px;
   content: "New blog post";
+}
+.blog-post-edit-component .bs-form:after {
+  content: "Edit blog post";
 }

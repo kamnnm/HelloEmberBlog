@@ -1,0 +1,17 @@
+<article class="blog-post">
+  {{#if editing}}
+    {{blog-post-editor object=post editing=true onCancel=(action 'cancel')}}
+  {{else}}
+    <h2 class="blog-post-title">{{post.title}}</h2>
+    <p class="blog-post-meta">
+      {{moment-format post.createdAt 'Do MMMM, YYYY HH:mm'}}
+      {{#if post.user.fullName}}
+        by <a href="#">{{post.user.fullName}}</a>
+      {{/if}}
+      {{fa-icon "pencil" class="pull-right cpointer" click=(action 'edit')}}
+    </p>
+    <div class="blog-post-description">
+      {{nl2br post.description}}
+    </div>
+  {{/if}}
+</article>
