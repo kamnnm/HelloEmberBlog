@@ -10,7 +10,7 @@ test('visiting /', function(assert) {
 
   andThen(function() {
     assert.equal(
-      find('.blog-post').length,
+      find('.blog-post-article').length,
       3,
       'We can see 3 posts on /'
     );

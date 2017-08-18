@@ -7,10 +7,6 @@ export default Ember.Component.extend({
 
   editing: false,
 
-  canEdit: Ember.computed('post.createdBy', function() {
-    return this.get('currentUser.user.id') == this.get(`post.user.id`);
-  }),
-
   actions: {
     edit() {
       this.set('editing', true);

@@ -56,8 +56,8 @@ test('registered user should can create blog post', function(assert) {
   click('.blog-post-form__submit');
 
   andThen(() => {
-    assert.equal(find('.blog-post-title').first().text().trim(), title);
-    assert.equal(find('.blog-post-description').first().text().trim(), description);
+    assert.equal(find('.blog-post-article__title').first().text().trim(), title);
+    assert.equal(find('.blog-post-article__description').first().text().trim(), description);
   });
 });
 
@@ -73,6 +73,6 @@ test('user should not can create blog post without title', function(assert) {
   andThen(() => {
     assert.equal(find('.has-error .blog-post-form__title-input').length > 0, true);
     assert.equal(find('.blog-post-form__error').length > 0 , true);
-    assert.notEqual(find('.blog-post-description').first().text().trim(), description);
+    assert.notEqual(find('.blog-post-article__description').first().text().trim(), description);
   });
 });
