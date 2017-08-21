@@ -3,11 +3,27 @@ import pagedArray from 'ember-cli-pagination/computed/paged-array';
 
 export default Ember.Controller.extend({
   sortProperties: ['createdAt:desc'],
-  queryParams: ["page", "perPage"],
+  queryParams: ["page", "perPage", "month"],
+
+  month: null,
 
   filteredModel: Ember.computed.filterBy('model', 'isNew', false),
   sortedModel: Ember.computed.sort('filteredModel', 'sortProperties'),
-  pagedModel: pagedArray('sortedModel', {perPage: 3}),
+
+  archiveModel: Ember.computed.uniqBy('sortedModel', 'month'),
+
+  filteredByMonthModel: Ember.computed('sortedModel', 'month',  function() {
+    const month = this.get('month');
+    const sortedModel = this.get('sortedModel');
+
+    if (month) {
+      return sortedModel.filterBy('month', month);
+    }
+    else {
+      return sortedModel;
+    }
+  }),
+  pagedModel: pagedArray('filteredByMonthModel', {perPage: 3}),
 
   page: Ember.computed.alias("pagedModel.page"),
   perPage: Ember.computed.alias("pagedModel.perPage"),

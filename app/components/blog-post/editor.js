@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import Changeset from 'ember-changeset';
 import lookupValidator from 'ember-changeset-validations';
-import PostValidations from '../validations/post';
+import PostValidations from '../../validations/post';
 
 export default Ember.Component.extend({
   classNames: ['blog-post-editor-component'],

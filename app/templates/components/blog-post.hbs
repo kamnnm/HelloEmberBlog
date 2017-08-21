@@ -1,6 +1,6 @@
 <article class="blog-post-article">
   {{#if editing}}
-    {{blog-post-editor object=post editing=true onCancel=(action 'cancel')}}
+    {{blog-post/editor object=post editing=true onCancel=(action 'cancel')}}
   {{else}}
     <h2 class="blog-post-title blog-post-article__title">{{post.title}}</h2>
     <p class="blog-post-meta blog-post-article__meta">

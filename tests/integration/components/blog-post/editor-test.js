@@ -6,6 +6,6 @@ moduleForComponent('blog-post-editor', 'Integration | Component | blog post edit
 });
 
 test('it renders', function(assert) {
-  this.render(hbs`{{blog-post-editor}}`);
+  this.render(hbs`{{blog-post/editor}}`);
   assert.equal(this.$('.blog-post-editor-component').length, 1);
 });

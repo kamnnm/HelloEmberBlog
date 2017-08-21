@@ -1,0 +1,11 @@
+<div class="sidebar-module">
+  <h4>Archives</h4>
+  <ol class="list-unstyled">
+    <li>
+      {{link-to 'All' 'index' (query-params month=null)}}
+    </li>
+    {{#each model as |item|}}
+      <li>{{link-to item.monthText 'index' (query-params month=item.month)}}</li>
+    {{/each}}
+  </ol>
+</div>
