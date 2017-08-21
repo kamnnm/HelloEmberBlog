@@ -11,6 +11,7 @@ export default Factory.extend({
     return faker.internet.email();
   },
   registered: trait({
+    id: 1000,
     login: 'user',
     password: '321321',
     firstName: 'Foo',

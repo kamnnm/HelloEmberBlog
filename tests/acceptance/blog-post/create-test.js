@@ -7,7 +7,7 @@ import {
   invalidateSession
 } from 'hello-ember-blog/tests/helpers/ember-simple-auth';
 
-moduleForAcceptance('Acceptance | blog post create');
+moduleForAcceptance('Acceptance | blog post/create');
 
 test('if user is not logged in, he should not see a blog post create form', function(assert) {
   invalidateSession(this.application);

@@ -74,6 +74,6 @@ export function testConfig() {
   this.post('/posts');
 
   this.get('/user', ({ users }) =>  {
-    return users.create({id: 1});
+    return users.find(1000) || users.create('registered');
   });
 }
