@@ -1,6 +1,6 @@
 {{#if session.isAuthenticated}}
-  <div class="bs-form">
-    <form {{action 'createPost' on='submit'}} class="blog-post-form">
+  <div class="blog-post-form">
+    <form {{action 'createPost' on='submit'}}>
       {{#validated-input model=post property='title'}}
         {{input name='title'
                 placeholder='Enter title'
@@ -34,5 +34,8 @@
         <button type="button" class="blog-post-form__cancel btn btn-default" {{action 'cancel'}}>Cancel</button>
       {{/if}}
     </form>
+    <div class="blog-post-form__title">
+      {{if editing "Edit blog post" "New blog post"}}
+    </div>
   </div>
 {{/if}}

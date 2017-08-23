@@ -9,13 +9,13 @@
         </div>
       {{/if}}
       <div class="form-group">
-        {{input id='login'
+        {{input name='login'
                 placeholder='Login'
                 value=login
                 class='user-login-form__login-input form-control'}}
       </div>
       <div class="form-group">
-        {{input id='password'
+        {{input name='password'
                 placeholder='Password'
                 type='password'
                 value=password
@@ -25,12 +25,30 @@
     </form>
   {{/if}}
 </div>
-{{#if session.isAuthenticated}}
-  {{#if currentUser.user}}
-    <ul class="nav navbar-nav navbar-right">
+<ul class="nav navbar-nav navbar-right">
+  {{#if session.isAuthenticated}}
+    {{#if currentUser.user}}
       <li>
-        <a href="#">Signed in as {{currentUser.user.fullName}}</a>
+        <a href="#">
+          Signed in as {{currentUser.user.fullName}}
+        </a>
       </li>
-    </ul>
+      <li>
+        <a href="#" style="padding-top: 10px; padding-bottom: 10px">
+          {{ember-initials
+            name=currentUser.user.fullName
+            defaultName="?"
+            seedText=currentUser.user.fullName
+            size=30
+            fontSize=50
+            class="img-circle"
+          }}
+        </a>
+      </li>
+    {{/if}}
+  {{else}}
+    <li>
+      {{link-to "Register" "register"}}
+    </li>
   {{/if}}
-{{/if}}
+</ul>

@@ -5,7 +5,6 @@ import PostValidations from '../../validations/post';
 
 export default Ember.Component.extend({
   classNames: ['blog-post-editor-component'],
-  classNameBindings: ['editing:blog-post-edit-component:blog-post-create-component'],
 
   store: Ember.inject.service(),
   session: Ember.inject.service(),
@@ -25,6 +24,7 @@ export default Ember.Component.extend({
 
   actions: {
     createPost() {
+      this.set('errorMessage');
       let post = this.get('post');
 
       post.validate().then(() => {

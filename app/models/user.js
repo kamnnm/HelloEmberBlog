@@ -8,7 +8,7 @@ export default DS.Model.extend({
   email: DS.attr(),
   password: DS.attr(),
   posts: DS.hasMany('post'),
-  fullName: Ember.computed("lastName", "firstName", function fullName(){
+  fullName: Ember.computed("firstName", "lastName", function fullName(){
     const { firstName, lastName } = this.getProperties('firstName', 'lastName');
 
     if(firstName && lastName)

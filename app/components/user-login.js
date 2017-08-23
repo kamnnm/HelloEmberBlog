@@ -9,7 +9,7 @@ export default Ember.Component.extend({
   actions: {
     authenticate() {
       this.set('errorMessage');
-      let data = this.getProperties('login', 'password');
+      const data = this.getProperties('login', 'password');
       this.get('session').authenticate('authenticator:jwt', data).catch((reason) => {
         this.set('errorMessage', reason.error || reason);
       });

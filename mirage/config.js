@@ -23,6 +23,8 @@ export default function() {
     return new Response(401, {}, body);
   });
 
+  this.post('/users');
+
   this.patch('/posts/:id');
   this.post('/posts', (schema, request) => {
     const authorization = request.requestHeaders.Authorization;

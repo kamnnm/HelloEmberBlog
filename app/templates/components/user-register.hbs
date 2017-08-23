@@ -1,0 +1,67 @@
+<div  class="user-register-form">
+  <form {{action 'register' on='submit'}}>
+    {{#validated-input model=user property='login'}}
+      {{input name='login'
+              placeholder='Login'
+              value=user.login
+              class='user-register-form__login-input form-control'}}
+    {{/validated-input}}
+
+    {{#validated-input model=user property='password'}}
+      {{input name='password'
+              placeholder='Password'
+              value=user.password
+              type='password'
+              class='user-register-form__password-input form-control'}}
+    {{/validated-input}}
+
+    {{#validated-input model=user property='passwordConfirmation'}}
+      {{input name='passwordConfirmation'
+              placeholder='Password again'
+              value=user.passwordConfirmation
+              type='password'
+              class='user-register-form__repassword-confirmation-input form-control'}}
+    {{/validated-input}}
+
+    <hr />
+
+    {{#validated-input model=user property='firstName'}}
+      {{input name='firstName'
+              placeholder='First name'
+              value=user.firstName
+              class='user-register-form__first-name-input form-control'}}
+    {{/validated-input}}
+
+    {{#validated-input model=user property='lastName'}}
+      {{input name='lastName'
+              placeholder='Last name'
+              value=user.lastName
+              class='user-register-form__last-name-input form-control'}}
+    {{/validated-input}}
+
+    {{#validated-input model=user property='email'}}
+      {{input name='email'
+              placeholder='Email'
+              value=user.email
+              class='user-register-form__email-input form-control'}}
+    {{/validated-input}}
+
+    {{#if (or user.errors errorMessage)}}
+      <ul class="user-register-form__error text-danger">
+        {{#if errorMessage}}
+          <li>{{errorMessage.errors}}</li>
+        {{/if}}
+        {{#each user.errors as |errorSet|}}
+          {{#each errorSet.validation as |error|}}
+            <li>{{error}}</li>
+          {{/each}}
+        {{/each}}
+      </ul>
+    {{/if}}
+
+    <button type="submit" class="user-register-form__submit btn btn-success">Create account</button>
+  </form>
+  <div class="user-register-form__title">
+    Register
+  </div>
+</div>

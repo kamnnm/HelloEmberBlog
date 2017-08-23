@@ -10,6 +10,12 @@ export default Factory.extend({
   email() {
     return faker.internet.email();
   },
+  login() {
+    return faker.internet.userName();
+  },
+  password() {
+    return faker.internet.password();
+  },
   registered: trait({
     id: 1000,
     login: 'user',
