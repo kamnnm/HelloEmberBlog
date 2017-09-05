@@ -9,14 +9,12 @@ export default Ember.Route.extend({
 
   actions: {
     saveUser(user) {
-      user.save().then(() => {
+      return user.save().then(() => {
         const data = user.getProperties('login', 'password');
         this.get('session').authenticate('authenticator:jwt', data).catch(() => {
           this.transitionTo('index');
           //todo: оставлять на странице, скрывать форму и показывать ошибку.
         });
-      }).catch((reason) => {
-        this.set('error', reason.error || reason);
       });
     },
 

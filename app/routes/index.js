@@ -9,17 +9,13 @@ export default Ember.Route.extend({
     });
   },
 
-  // setupController: function(controller, model) {
-  //   controller.set('newPost', model.newPost);
-  // }
-
   actions: {
     savePost(post) {
       let isNew = post.get('isNew');
       return post.save().then(() => {
-        // if(isNew) {
+        if(isNew) {
           this.controller.set('model.newPost', this.get('store').createRecord('post'));
-        // }
+        }
       });
     },
 

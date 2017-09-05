@@ -11,16 +11,9 @@ export default Ember.Component.extend({
 
   editing: false,
 
-  init() {
-    this._super(...arguments);
-    this.setInitialState();
-  },
-
-  setInitialState() {
-    debugger;
-    this.set('post', new Changeset(this.get('model'), lookupValidator(PostValidations), PostValidations));
-    // this.set('post', this.get('model'));
-  },
+  post: Ember.computed('model', function() {
+    return new Changeset(this.get('model'), lookupValidator(PostValidations), PostValidations)
+  }),
 
   actions: {
     createPost() {
@@ -35,8 +28,6 @@ export default Ember.Component.extend({
             if(this.get('editing')) {
               this.get('onCancel')();
             }
-
-            this.setInitialState();
           }).catch((reason) => {
             this.set('errorMessage', reason.error || reason);
           });
