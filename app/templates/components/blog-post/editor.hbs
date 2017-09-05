@@ -19,7 +19,7 @@
       {{#if (or post.errors errorMessage)}}
         <ul class="blog-post-form__error text-danger">
           {{#if errorMessage}}
-            <li>{{errorMessage.errors}}</li>
+            <li>{{errorMessage.message}}</li>
           {{/if}}
           {{#each post.errors as |errorSet|}}
             {{#each errorSet.validation as |error|}}

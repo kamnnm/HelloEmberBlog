@@ -7,7 +7,7 @@ export default Ember.Controller.extend({
 
   month: null,
 
-  filteredModel: Ember.computed.filterBy('model', 'isNew', false),
+  filteredModel: Ember.computed.filterBy('model.posts', 'isNew', false),
   sortedModel: Ember.computed.sort('filteredModel', 'sortProperties'),
 
   archiveModel: Ember.computed.uniqBy('sortedModel', 'month'),

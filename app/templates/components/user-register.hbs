@@ -49,7 +49,7 @@
     {{#if (or user.errors errorMessage)}}
       <ul class="user-register-form__error text-danger">
         {{#if errorMessage}}
-          <li>{{errorMessage.errors}}</li>
+          <li>{{errorMessage.message}}</li>
         {{/if}}
         {{#each user.errors as |errorSet|}}
           {{#each errorSet.validation as |error|}}

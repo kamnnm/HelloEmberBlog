@@ -4,7 +4,7 @@
 </div>
 <div class="row">
   <div class="col-sm-8 blog-main">
-    {{blog-post/editor}}
+    {{blog-post/editor model=model.newPost onSave=(route-action 'savePost')}}
     {{blog-posts posts=pagedModel}}
   </div>
   <div class="col-sm-3 col-sm-offset-1 blog-sidebar">

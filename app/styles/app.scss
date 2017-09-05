@@ -1,5 +1,7 @@
-/*@import "ember-modal-dialog/ember-modal-structure";
-@import "ember-modal-dialog/ember-modal-appearance";*/
+/*
+@import "ember-modal-dialog/ember-modal-structure";
+@import "ember-modal-dialog/ember-modal-appearance";
+*/
 @import "bootstrap";
 @import "components/user/register";
 
@@ -140,3 +142,5 @@ h6, .h6 {
   text-transform: uppercase;
   letter-spacing: 1px;
 }
+
+@import "ember-bootstrap/bootstrap";

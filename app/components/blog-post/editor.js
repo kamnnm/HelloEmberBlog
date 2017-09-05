@@ -6,7 +6,6 @@ import PostValidations from '../../validations/post';
 export default Ember.Component.extend({
   classNames: ['blog-post-editor-component'],
 
-  store: Ember.inject.service(),
   session: Ember.inject.service(),
   currentUser: Ember.inject.service(),
 
@@ -18,8 +17,9 @@ export default Ember.Component.extend({
   },
 
   setInitialState() {
-    const model = this.get('object') || this.get('store').createRecord('post');
-    this.set('post', new Changeset(model, lookupValidator(PostValidations), PostValidations));
+    debugger;
+    this.set('post', new Changeset(this.get('model'), lookupValidator(PostValidations), PostValidations));
+    // this.set('post', this.get('model'));
   },
 
   actions: {
@@ -29,7 +29,9 @@ export default Ember.Component.extend({
 
       post.validate().then(() => {
         if(post.get("isValid")) {
-          post.save().then(() => {
+          let promise = this.get('onSave')(post);
+
+          promise.then(() => {
             if(this.get('editing')) {
               this.get('onCancel')();
             }

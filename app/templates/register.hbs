@@ -1,7 +1,11 @@
 {{#unless session.isAuthenticated}}
   <div class="row" style="padding: 20px 0">
     <div class="col-sm-8">
-      {{user-register onFullNameChanged=(action 'fullNameChanged')}}
+      {{user-register
+        onFullNameChanged=(action 'fullNameChanged')
+        onSave=(route-action 'saveUser')
+        model=model
+        errorMessage=error}}
     </div>
     <div class="col-sm-3 col-sm-offset-1">
       {{ember-initials
@@ -13,8 +17,7 @@
         fontWeight=100
         fontFamily="Helvetica Neue Light, Arial, sans-serif"
         size=200
-        class="img-circle"
-      }}
+        class="img-circle"}}
     </div>
   </div>
 {{/unless}}

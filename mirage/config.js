@@ -19,7 +19,7 @@ export default function() {
       return user;
     }
 
-    let body = { errors: 'You are not authorized' };
+    let body = { message: 'You are not authorized' };
     return new Response(401, {}, body);
   });
 
@@ -42,7 +42,7 @@ export default function() {
       return schema.posts.create(attrs);
     }
 
-    let body = { errors: 'Title can\'t be blank' };
+    let body = { message: 'Title can\'t be blank' };
     return new Response(400, {}, body);
   });
 
@@ -67,7 +67,7 @@ export default function() {
       });
     }
 
-    let body = { errors: 'Email or password is invalid' };
+    let body = { message: 'Email or password is invalid' };
     return new Response(401, {}, body);
   });
 }

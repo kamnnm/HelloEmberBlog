@@ -65,28 +65,30 @@ test('user can login', function(assert) {
 
   server.createList('user', 1, 'registered');
 
-  const userName = 'user';
-  const password = '321321';
-
-  fillIn('.user-login-form__login-input', userName);
-  fillIn('.user-login-form__password-input', password);
-  click('.user-login-form__submit');
-
   andThen(() => {
-    const curSession = currentSession(this.application);
-    const isAuth = Ember.get(curSession, 'isAuthenticated');
-    assert.equal(
-      isAuth,
-      true,
-      'after a users submits good creds to login form, they are logged in'
-    );
+    const userName = 'user';
+    const password = '321321';
 
-    const loginFormPresent = find('.user-login-form').length > 0 ? true : false;
-    assert.equal(
-      loginFormPresent,
-      false,
-      'after user logged in, the login form disappears'
-    )
+    fillIn('.user-login-form__login-input', userName);
+    fillIn('.user-login-form__password-input', password);
+    click('.user-login-form__submit');
+
+    andThen(() => {
+      const curSession = currentSession(this.application);
+      const isAuth = Ember.get(curSession, 'isAuthenticated');
+      assert.equal(
+        isAuth,
+        true,
+        'after a users submits good creds to login form, they are logged in'
+      );
+
+      const loginFormPresent = find('.user-login-form').length > 0 ? true : false;
+      assert.equal(
+        loginFormPresent,
+        false,
+        'after user logged in, the login form disappears'
+      )
+    });
   });
 });
 
