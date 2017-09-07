@@ -10,11 +10,18 @@
       {{link-to "HelloEmber Blog" "index" class="navbar-brand"}}
     </div>
     <div id="navbar" class="navbar-collapse collapse">
-      {{user-login}}
+      {{user-login onAuthenticate=(action 'authenticate') onInvalidate=(action 'invalidateSession')}}
     </div>
   </div>
 </nav>
-<div class="container">
+<div class="container pdgt20">
+  <div class="blog-header">
+    <h1 class="blog-title">The HelloEmber Blog</h1>
+    <p class="lead blog-description">My little sandbox of Ember tricks.</p>
+  </div>
+  {{#each flashMessages.queue as |flash|}}
+    {{flash-message flash=flash}}
+  {{/each}}
   {{outlet}}
 </div>
 <footer class="blog-footer">

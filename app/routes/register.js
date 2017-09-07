@@ -1,7 +1,11 @@
 import Ember from 'ember';
 
+const { inject: { service } } = Ember;
+
 export default Ember.Route.extend({
-  session: Ember.inject.service(),
+  session: service(),
+  flashMessages: service(),
+  authenticateUser: service(),
 
   model() {
     return this.get('store').createRecord('user')
@@ -11,7 +15,10 @@ export default Ember.Route.extend({
     saveUser(user) {
       return user.save().then(() => {
         const data = user.getProperties('login', 'password');
-        this.get('session').authenticate('authenticator:jwt', data).catch(() => {
+
+        let authPromise = this.get('authenticateUser').login(data);
+        authPromise.catch((reason) => {
+          this.get('flashMessages').danger(reason.message);
           this.transitionTo('index');
           //todo: оставлять на странице, скрывать форму и показывать ошибку.
         });

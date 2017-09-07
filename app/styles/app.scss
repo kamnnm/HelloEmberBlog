@@ -33,6 +33,41 @@ h6, .h6 {
   }
 }
 
+$max: 100;
+$step: 5;
+@for $i from 0 through ceil($max/$step) {
+  $value: $step * $i;
+
+  .mrgt#{$value} {
+    margin-top: #{$value}px;
+  }
+  .mrgr#{$value} {
+    margin-right: #{$value}px;
+  }
+  .mrgb#{$value} {
+    margin-bottom: #{$value}px;
+  }
+  .mrgl#{$value} {
+    margin-left: #{$value}px;
+  }
+}
+@for $i from 0 through ceil($max/$step) {
+  $value: $step * $i;
+
+  .pdgt#{$value} {
+    padding-top: #{$value}px;
+  }
+  .pdgr#{$value} {
+    padding-right: #{$value}px;
+  }
+  .pdgb#{$value} {
+    padding-bottom: #{$value}px;
+  }
+  .pdgl#{$value} {
+    padding-left: #{$value}px;
+  }
+}
+
 .cpointer {
   cursor: pointer;
 }
@@ -45,7 +80,7 @@ h6, .h6 {
   padding-bottom: 20px;
 }
 .blog-title {
-  margin-top: 30px;
+  margin-top: 10px;
   margin-bottom: 0;
   font-size: 60px;
   font-weight: normal;

@@ -72,23 +72,21 @@ test('user can login', function(assert) {
     fillIn('.user-login-form__login-input', userName);
     fillIn('.user-login-form__password-input', password);
     click('.user-login-form__submit');
+  }).andThen(() => {
+    const curSession = currentSession(this.application);
+    const isAuth = Ember.get(curSession, 'isAuthenticated');
+    assert.equal(
+      isAuth,
+      true,
+      'after a users submits good creds to login form, they are logged in'
+    );
 
-    andThen(() => {
-      const curSession = currentSession(this.application);
-      const isAuth = Ember.get(curSession, 'isAuthenticated');
-      assert.equal(
-        isAuth,
-        true,
-        'after a users submits good creds to login form, they are logged in'
-      );
-
-      const loginFormPresent = find('.user-login-form').length > 0 ? true : false;
-      assert.equal(
-        loginFormPresent,
-        false,
-        'after user logged in, the login form disappears'
-      )
-    });
+    const loginFormPresent = find('.user-login-form').length > 0 ? true : false;
+    assert.equal(
+      loginFormPresent,
+      false,
+      'after user logged in, the login form disappears'
+    )
   });
 });
 
@@ -123,7 +121,7 @@ test('If a user puts in the wrong login credentials, they see a login error', fu
     assert.equal(
       loginFormPresent,
       true,
-      'and we can still see the login form'
+      'and we still can see the login form'
     )
   });
 });
