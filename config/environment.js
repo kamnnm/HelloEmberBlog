@@ -25,6 +25,10 @@ module.exports = function(environment) {
 
     moment: {
       includeLocales: ['ru']
+    },
+
+    flashMessageDefaults: {
+      timeout: 10000
     }
   };
 

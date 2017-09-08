@@ -14,7 +14,7 @@ export default Ember.Route.extend({
   actions: {
     saveUser(user) {
       return user.save().then(() => {
-        const data = user.getProperties('login', 'password');
+        const data = user.getProperties('login', 'apassword');
 
         let authPromise = this.get('authenticateUser').login(data);
         authPromise.catch((reason) => {
